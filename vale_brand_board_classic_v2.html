@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vale Brand Board, Classic Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Jost:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Vale, classic edition tokens (lifted from vale_landing_page_v1.html) */
+  --white:#FFFFFF;
+  --graphite:#2D2D2D;
+  --slate:#6B7280;
+  --sage:#8A9E87;
+  --birch:#D4B896;
+  --hair:rgba(45,45,45,0.10);
+  --hair-strong:rgba(45,45,45,0.18);
+  --lift:0 18px 40px rgba(45,45,45,0.07);
+  --sans:'Jost', Arial, Helvetica, sans-serif;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  /* board chrome */
+  --doc:'Poppins', Arial, sans-serif;
+  --mute:#9A9EA6;
+  --paper:#F7F7F6;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--white);color:var(--graphite);font-family:var(--doc);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+/* board chrome */
+.cover{padding:72px 0 64px;border-bottom:1px solid var(--hair);}
+.cover .row{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;}
+.doc-k{font-family:var(--doc);font-size:11px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--slate);}
+.cover h1{font-family:var(--doc);font-weight:600;font-size:40px;line-height:1.15;margin-top:14px;}
+.cover p{color:var(--slate);max-width:560px;margin-top:12px;}
+.meta{font-size:13px;color:var(--slate);text-align:right;line-height:1.9;}
+.meta .v{font-weight:600;color:var(--graphite);}
+.sec{padding:72px 0;border-bottom:1px solid var(--hair);}
+.sec-h{display:flex;gap:18px;align-items:baseline;margin-bottom:30px;}
+.sec-h .n{font-weight:600;font-size:13px;color:var(--mute);letter-spacing:0.1em;}
+.sec-h h2{font-weight:600;font-size:24px;}
+.sec-h p{color:var(--slate);font-size:14px;margin-left:auto;max-width:420px;text-align:right;}
+.rules{list-style:none;margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:10px 40px;}
+.rules li{font-size:14px;color:var(--slate);padding-left:18px;position:relative;}
+.rules li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--sage);}
+.cap{font-family:var(--doc);font-size:12px;color:var(--slate);margin-top:12px;}
+
+/* demo stage: everything inside uses Vale */
+.stage{background:var(--white);border:1px solid var(--hair);border-radius:6px;padding:56px;font-family:var(--sans);}
+.stage.lift{box-shadow:var(--lift);}
+.stage.dark{background:var(--graphite);border-color:var(--graphite);}
+.stage.paper{background:var(--paper);}
+
+/* wordmark */
+.mark{display:inline-flex;flex-direction:column;align-items:center;line-height:1;}
+.mark .w{font-family:var(--serif);font-size:34px;letter-spacing:0.42em;margin-right:-0.42em;color:var(--graphite);}
+.mark svg{margin:5px 0 4px;}
+.mark .s{font-family:var(--sans);font-size:9px;letter-spacing:0.62em;margin-right:-0.62em;color:var(--slate);}
+.mark.big .w{font-size:72px;}
+.mark.big svg{width:250px;height:16px;margin:10px 0 8px;}
+.mark.big .s{font-size:17px;}
+.mark.light .w{color:#fff;}
+.mark.light .s{color:rgba(255,255,255,0.7);}
+.wm-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px;}
+.wm-grid .stage{display:flex;align-items:center;justify-content:center;min-height:230px;padding:36px;}
+.space{position:relative;padding:34px 46px;border:1px dashed var(--hair-strong);}
+.space .tagx{position:absolute;top:-10px;left:12px;background:#fff;padding:0 8px;font-family:var(--doc);font-size:11px;color:var(--slate);letter-spacing:0.08em;}
+
+/* colour */
+.sw-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.sw{border:1px solid var(--hair);border-radius:6px;overflow:hidden;background:#fff;box-shadow:var(--lift);}
+.sw .chip{height:120px;border-bottom:1px solid var(--hair);}
+.sw .info{padding:14px 16px 16px;}
+.sw .nm{font-weight:600;font-size:14px;}
+.sw .hx{font-size:12px;color:var(--slate);letter-spacing:0.04em;}
+.sw .use{font-size:12px;color:var(--slate);margin-top:6px;line-height:1.5;}
+.ratio{display:flex;height:46px;border-radius:6px;overflow:hidden;margin-top:28px;border:1px solid var(--hair);}
+.ratio div{display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:0.08em;}
+
+/* type */
+.k{font-family:var(--sans);font-size:12px;letter-spacing:0.34em;text-transform:uppercase;color:var(--slate);}
+.k::before{content:"";display:inline-block;width:28px;height:1px;background:var(--sage);vertical-align:middle;margin-right:14px;}
+em.acc{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:0;}
+.vh1{font-family:var(--sans);font-weight:400;font-size:64px;line-height:1.04;letter-spacing:-0.01em;color:var(--graphite);margin-top:18px;}
+.vh2{font-family:var(--sans);font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-0.01em;color:var(--graphite);}
+.vlede{font-family:var(--sans);font-size:19px;color:var(--slate);max-width:520px;line-height:1.7;margin-top:22px;}
+.scale{margin-top:30px;border-top:1px solid var(--hair);}
+.scale .r{display:grid;grid-template-columns:170px 1fr 230px;gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--hair);}
+.scale .r .l{font-family:var(--doc);font-size:12px;color:var(--slate);}
+.scale .r .s{font-family:var(--doc);font-size:12px;color:var(--mute);text-align:right;}
+.fam{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px;}
+.fam .stage{padding:32px;}
+.fam .big{font-size:56px;line-height:1;color:var(--graphite);}
+
+/* buttons */
+.btn{display:inline-block;font-family:var(--sans);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;border-radius:40px;padding:17px 34px;border:1px solid var(--graphite);white-space:nowrap;}
+.btn.solid{background:var(--graphite);color:#fff;}
+.btn.line{background:transparent;color:var(--graphite);}
+.btn.sage{background:var(--sage);border-color:var(--sage);color:#fff;}
+.ulink{font-family:var(--sans);text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:3px;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--graphite);}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+/* cards */
+.card-row{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start;}
+.pcard{background:#fff;border:1px solid var(--hair);border-radius:6px;overflow:hidden;box-shadow:var(--lift);max-width:300px;}
+.pcard .ph{background:var(--paper);height:230px;display:flex;align-items:center;justify-content:center;}
+.pcard .tag{border-top:1px solid var(--birch);padding:22px 22px 24px;font-family:var(--sans);display:flex;flex-direction:column;gap:8px;}
+.pcard .lab{font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--slate);}
+.pcard h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.05;color:var(--graphite);}
+.pcard .ln{font-size:14px;color:var(--slate);line-height:1.55;}
+.pcard .pr{margin-top:6px;padding-top:14px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;font-size:15px;}
+.pcard .pr span{font-size:11px;letter-spacing:0.12em;color:var(--slate);}
+.pbox{display:flex;align-items:center;gap:24px;background:#fff;border-radius:24px;box-shadow:var(--lift);border:1px solid var(--hair);padding:24px 28px;font-family:var(--sans);}
+.pbox .ti{flex:0 0 120px;font-size:13px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;line-height:1.45;}
+.pbox .bd{font-size:15px;color:var(--slate);line-height:1.65;}
+.stack{display:flex;flex-direction:column;gap:18px;}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:28px;font-family:var(--sans);}
+.strip .it{padding:28px 22px;display:flex;gap:14px;align-items:center;border-left:1px solid var(--hair);}
+.strip .it:first-child{border-left:none;}
+.strip .it .t{font-size:14px;line-height:1.45;color:var(--graphite);}
+.strip .it .t span{display:block;font-size:12px;letter-spacing:0.08em;color:var(--slate);}
+
+/* details */
+.circ-row{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+.circ{display:flex;flex-direction:column;align-items:center;text-align:center;font-family:var(--sans);}
+.circ .o{width:170px;height:170px;border-radius:50%;border:1px solid var(--hair-strong);padding:6px;background:#fff;}
+.circ .o div{width:100%;height:100%;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;}
+.circ .c{margin-top:20px;font-size:13px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--sage);}
+.circ p{margin-top:8px;font-size:14px;color:var(--slate);max-width:240px;}
+.band{position:relative;background:#1d1d1d;border-radius:6px;overflow:hidden;margin-top:30px;font-family:var(--sans);}
+.band .bg{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#3a3430 0 22px,#2f2a27 22px 24px,#463e38 24px 46px,#2f2a27 46px 48px);}
+.band .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(29,29,29,0.88) 0%,rgba(29,29,29,0.55) 48%,rgba(29,29,29,0.80) 100%);}
+.band .in{position:relative;padding:70px 56px;}
+.band .k{color:rgba(255,255,255,0.7);}
+.band h3{color:#fff;font-weight:400;font-size:36px;line-height:1.1;max-width:520px;margin-top:14px;}
+.band h3 em.acc{color:var(--birch);}
+.band p{color:rgba(255,255,255,0.78);max-width:440px;font-size:15px;margin-top:12px;}
+
+/* photo */
+.ph-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ph-card{background:#fff;border:1px solid var(--hair);border-radius:6px;box-shadow:var(--lift);padding:26px;}
+.ph-card h4{font-weight:600;font-size:15px;margin:14px 0 6px;}
+.ph-card p{font-size:13px;color:var(--slate);}
+
+/* do and don't */
+.dd2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.dbox{border-radius:6px;padding:30px;border:1px solid var(--hair);}
+.dbox h4{font-weight:600;font-size:15px;margin-bottom:14px;}
+.dbox ul{list-style:none;}
+.dbox li{font-size:14px;color:var(--slate);padding:9px 0;border-top:1px solid var(--hair);}
+.dbox.yes{background:#fff;box-shadow:var(--lift);}
+.dbox.no{background:var(--paper);}
+
+/* stand */
+.stand-grid{display:grid;grid-template-columns:2.1fr 1fr;gap:26px;align-items:end;}
+.wall{background:#fff;aspect-ratio:3/2.5;border:1px solid var(--hair);border-radius:4px;box-shadow:0 30px 60px rgba(45,45,45,0.12);position:relative;overflow:hidden;font-family:var(--sans);display:grid;grid-template-columns:1fr 1fr;}
+.wall .l{padding:9% 8%;display:flex;flex-direction:column;justify-content:space-between;}
+.wall .wh{font-size:clamp(24px,3.3vw,42px);line-height:1.05;letter-spacing:-0.01em;color:var(--graphite);}
+.wall .r{background:var(--paper);border-left:1px solid var(--hair);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:8%;}
+.wall .ph-ph{width:100%;aspect-ratio:4/5;border:1px dashed var(--hair-strong);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--doc);font-size:12px;color:var(--slate);text-align:center;padding:12px;}
+.wall .foot{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--slate);border-top:1px solid var(--birch);padding-top:12px;}
+.banner{background:#fff;aspect-ratio:850/2000;border:1px solid var(--hair);border-radius:4px;box-shadow:0 30px 60px rgba(45,45,45,0.12);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:14% 10% 12%;text-align:center;font-family:var(--sans);}
+.banner .bh{font-size:clamp(20px,2.3vw,28px);line-height:1.1;color:var(--graphite);}
+.banner .ph-ph{width:100%;aspect-ratio:4/5;border:1px dashed var(--hair-strong);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--doc);font-size:11px;color:var(--slate);padding:10px;}
+.banner .bf{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--slate);line-height:1.8;border-top:1px solid var(--sage);padding-top:12px;}
+.dims{font-family:var(--doc);font-size:12px;color:var(--slate);margin-top:12px;}
+
+.wall-cap{display:none;margin-top:14px;}
+footer.doc{padding:40px 0 60px;font-size:12px;color:var(--mute);}
+
+@media (max-width:900px){
+  .wm-grid,.card-row,.ph-grid,.dd2,.two,.fam,.stand-grid,.circ-row{grid-template-columns:1fr;}
+  .sw-grid{grid-template-columns:repeat(2,1fr);}
+  .strip{grid-template-columns:1fr 1fr;}
+  .strip .it:nth-child(3){border-left:none;}
+  .strip .it:nth-child(n+3){border-top:1px solid var(--hair);}
+  .rules{grid-template-columns:1fr;}
+  .sec-h{flex-wrap:wrap;}
+  .sec-h p{margin-left:0;text-align:left;}
+  .scale .r{grid-template-columns:1fr;gap:4px;}
+  .scale .r .s{text-align:left;}
+  .vh1{font-size:46px;}
+  .banner{max-width:280px;margin:0 auto;}
+  .pcard{max-width:none;}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px;}
+  .stage{padding:28px;}
+  .cover h1{font-size:30px;}
+  .meta{text-align:left;}
+  .vh1{font-size:38px;}
+  .vh2{font-size:31px;}
+  .mark.big .w{font-size:48px;}
+  .mark.big svg{width:170px;}
+  .mark.big .s{font-size:12px;}
+  .strip{grid-template-columns:1fr;}
+  .strip .it{border-left:none;border-top:1px solid var(--hair);}
+  .strip .it:first-child{border-top:none;}
+  .pbox{flex-direction:column;align-items:flex-start;gap:12px;}
+  .band .in{padding:44px 26px;}
+  .band h3{font-size:28px;}
+  .wall{aspect-ratio:auto;min-height:calc((100vw - 32px) * 0.833);}
+  .wall .r .btn{display:none;}
+  .wall-cap{display:flex;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="wave" d="M1 4 C 16 0, 24 0, 40 4 S 64 8, 80 4 S 104 0, 119 4"/>
+    <symbol id="i-flame" viewBox="0 0 34 34"><path fill="none" stroke="#8A9E87" stroke-width="1.3" d="M17 4c4 6 8 9 8 15a8 8 0 0 1-16 0c0-4 2-6 4-9 1 3 2 4 4 4-1-4 0-7 0-10z"/></symbol>
+    <symbol id="i-shape" viewBox="0 0 34 34"><g fill="none" stroke="#8A9E87" stroke-width="1.3"><circle cx="11" cy="17" r="8"/><rect x="21" y="9" width="10" height="16" rx="1.5"/></g></symbol>
+    <symbol id="i-van" viewBox="0 0 34 34"><g fill="none" stroke="#8A9E87" stroke-width="1.3"><path d="M3 22h18V10H3z"/><path d="M21 14h6l4 4v4H21"/><circle cx="9" cy="24" r="2.5"/><circle cx="26" cy="24" r="2.5"/></g></symbol>
+    <symbol id="i-steps" viewBox="0 0 34 34"><g fill="none" stroke="#8A9E87" stroke-width="1.3"><path d="M4 25h26"/><path d="M8 25v-6h18v6"/><path d="M11 19v-4h12v4"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 34 34"><g fill="none" stroke="#8A9E87" stroke-width="1.3" stroke-linecap="round"><path d="M4 25h26"/><path d="M9 25a8 8 0 0 1 16 0"/><path d="M17 10V6M8 14l-3-3M26 14l3-3"/></g></symbol>
+    <symbol id="i-people" viewBox="0 0 34 34"><g fill="none" stroke="#8A9E87" stroke-width="1.3"><circle cx="12" cy="12" r="4"/><circle cx="23" cy="12" r="4"/><path d="M4 28c1-7 15-7 16 0"/><path d="M17 24c3-4 12-4 13 4"/></g></symbol>
+    <symbol id="i-frame" viewBox="0 0 34 34"><g fill="none" stroke="#8A9E87" stroke-width="1.3"><rect x="4" y="7" width="26" height="20" rx="1.5"/><path d="M7 24l7-7 5 5 4-4 5 6"/><circle cx="23" cy="12" r="2"/></g></symbol>
+    <symbol id="tub-line" viewBox="0 0 140 110">
+      <g fill="none" stroke="#8A9E87" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="62" cy="44" rx="44" ry="10"/>
+        <path d="M18 44v44c0 6 20 10 44 10s44-4 44-10V44"/>
+        <path d="M18 58c0 6 20 10 44 10s44-4 44-10"/>
+        <path d="M18 80c0 6 20 10 44 10s44-4 44-10"/>
+        <path d="M34 52v42M48 54v44M62 54v44M76 54v44M90 52v42"/>
+        <path d="M112 98V12"/><path d="M120 98V12"/>
+        <path d="M108 12h16l-8-6z"/>
+        <path d="M112 40h8M112 54h8M112 68h8"/>
+        <path d="M106 88h6"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- COVER -->
+<header class="cover">
+  <div class="wrap row">
+    <div>
+      <div class="doc-k">Vale Hot Tubs &middot; Brand board</div>
+      <h1>Classic edition</h1>
+      <p>Pure white, graphite type, one Cormorant italic accent word, sage and birch used as thin lines only. Everything here is lifted from the live vale_landing_page_v1 page.</p>
+    </div>
+    <div class="meta">
+      <span class="v">v2</span> &middot; 21 Oct 2026<br>
+      Source page: vale-hot-tubs.github.io/vale_landing_page_v1.html<br>
+      First use: NEC, hall stand LLT455, 4 to 5 Nov
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 WORDMARK -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">01</span><h2>Wordmark</h2><p>Liam's wordmark stays exactly as drawn. In this edition the wave line is sage and HOT TUBS is slate.</p></div>
+    <div class="wm-grid">
+      <div class="stage lift">
+        <div class="space"><span class="tagx">clear space = height of the V</span>
+          <span class="mark big"><span class="w">VALE</span><svg viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#8A9E87" stroke-width="1.2"/></svg><span class="s">HOT TUBS</span></span>
+        </div>
+      </div>
+      <div class="stage paper"><span class="mark"><span class="w">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#8A9E87" stroke-width="1.2"/></svg><span class="s">HOT TUBS</span></span></div>
+      <div class="stage dark"><span class="mark light"><span class="w">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#D4B896" stroke-width="1.2"/></svg><span class="s">HOT TUBS</span></span></div>
+    </div>
+    <ul class="rules">
+      <li>Graphite wordmark, sage wave, slate HOT TUBS on white.</li>
+      <li>On graphite or a dark photo: white wordmark, birch wave.</li>
+      <li>Minimum size: the wave line 120px wide on screen, 40mm in print.</li>
+      <li>Never stretch, outline, shadow or recolour the letters.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 02 COLOUR -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">02</span><h2>Colour</h2><p>White does almost all the work. Sage and birch are thin lines, never big fills.</p></div>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="info"><div class="nm">White</div><div class="hx">#FFFFFF</div><div class="use">Every background, stand walls, banners</div></div></div>
+      <div class="sw"><div class="chip" style="background:#2D2D2D"></div><div class="info"><div class="nm">Graphite</div><div class="hx">#2D2D2D</div><div class="use">Headings, solid buttons, the one dark band</div></div></div>
+      <div class="sw"><div class="chip" style="background:#6B7280"></div><div class="info"><div class="nm">Slate</div><div class="hx">#6B7280</div><div class="use">Body copy, kickers, labels</div></div></div>
+      <div class="sw"><div class="chip" style="background:#8A9E87"></div><div class="info"><div class="nm">Sage</div><div class="hx">#8A9E87</div><div class="use">Icons, kicker rule, underlines, one button</div></div></div>
+      <div class="sw"><div class="chip" style="background:#D4B896"></div><div class="info"><div class="nm">Birch</div><div class="hx">#D4B896</div><div class="use">Card top line, accent word on dark</div></div></div>
+    </div>
+    <div class="ratio" aria-label="Colour balance">
+      <div style="flex:80;background:#FFFFFF;color:#6B7280">WHITE 80%</div>
+      <div style="flex:10;background:#2D2D2D;color:#fff">10%</div>
+      <div style="flex:6;background:#6B7280;color:#fff">6%</div>
+      <div style="flex:3;background:#8A9E87"></div>
+      <div style="flex:1;background:#D4B896"></div>
+    </div>
+    <p class="cap">Rough balance across any piece. Sage and birch together stay under five per cent.</p>
+  </div>
+</section>
+
+<!-- 03 TYPE -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">03</span><h2>Type</h2><p>Jost at a calm regular weight. One word per heading switches to Cormorant italic.</p></div>
+    <div class="stage lift">
+      <div class="k">Vale Hot Tubs</div>
+      <div class="vh1">Warm water, <em class="acc">quiet</em> garden.</div>
+      <p class="vlede">Wood-fired, electric and hybrid hot tubs in round and square shapes, delivered and installed where you want to soak.</p>
+      <div class="scale">
+        <div class="r"><span class="l">Hero heading</span><span class="vh2" style="font-size:40px">Four tubs, <em class="acc">one</em> feeling.</span><span class="s">Jost 400 &middot; 48 to 64px &middot; accent Cormorant italic</span></div>
+        <div class="r"><span class="l">Section heading</span><span class="vh2" style="font-size:30px">Wood or <em class="acc">electric</em>, your call.</span><span class="s">Jost 400 &middot; 44px</span></div>
+        <div class="r"><span class="l">Product name</span><span style="font-family:var(--serif);font-size:30px;line-height:1.05">The Snowdonia</span><span class="s">Cormorant 400 &middot; 30px &middot; tub names only</span></div>
+        <div class="r"><span class="l">Kicker</span><span class="k">The range</span><span class="s">Jost 400 caps &middot; 12px &middot; 0.34em &middot; sage rule</span></div>
+        <div class="r"><span class="l">Label</span><span style="font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Wood-fired</span><span class="s">Jost 700 caps &middot; 13px</span></div>
+        <div class="r"><span class="l">Body</span><span style="font-family:var(--sans);font-size:17px;color:var(--slate)">Every tub in the range is offered both ways. Pick the one that fits how you like to unwind.</span><span class="s">Jost 400 &middot; 17px &middot; line height 1.7</span></div>
+      </div>
+    </div>
+    <div class="fam">
+      <div class="stage"><div class="doc-k">Headings and body</div><div class="big" style="font-family:var(--sans)">Aa</div><p class="cap">Jost 400 regular, 700 for caps labels only</p></div>
+      <div class="stage"><div class="doc-k">Wordmark, accent word, tub names</div><div class="big" style="font-family:var(--serif)">Aa <em style="font-style:italic">Aa</em></div><p class="cap">Cormorant Garamond 400 and 400 italic</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 BUTTONS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">04</span><h2>Buttons and links</h2><p>Rounded pills in spaced caps. Graphite first, outline second, sage only where it needs to stand apart.</p></div>
+    <div class="two">
+      <div class="stage"><div class="btn-row"><span class="btn solid">Explore the range</span><span class="btn line">Register interest</span></div><p class="cap">Main and second action. The outline button picks up a faint sage wash on hover.</p></div>
+      <div class="stage"><div class="btn-row"><span class="btn sage">See one at the NEC</span><a class="ulink" href="#">Wood or electric</a></div><p class="cap">Sage pill once per page at most. Text links carry a thin sage underline.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 CARDS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">05</span><h2>Cards and tiles</h2><p>Tight 6px corners, a hairline border and a faint shadow. The birch line sits where the photo meets the text.</p></div>
+    <div class="card-row">
+      <div class="pcard">
+        <div class="ph"><svg width="150" height="118" aria-hidden="true"><use href="#tub-line"/></svg></div>
+        <div class="tag"><div class="lab">Wood-fired</div><h3>The Snowdonia</h3><div class="ln">Warm timber, brushed steel and a built-in stove.</div><div class="pr">From &pound;X,XXX <span>+ VAT</span></div></div>
+      </div>
+      <div class="stack">
+        <div class="pbox"><svg width="90" height="71" aria-hidden="true"><use href="#tub-line"/></svg><div class="ti">Wood-fired</div><div class="bd">Heated by a wood-burning stove. Light it, feed it, and the water warms while you wait.</div></div>
+        <p class="cap">Pill box: line drawing left, caps title, slate copy. 24px corners, the one place corners go round.</p>
+      </div>
+    </div>
+    <div class="strip">
+      <div class="it"><svg width="34" height="34" aria-hidden="true"><use href="#i-flame"/></svg><div class="t">Wood-fired or electric<span>Hybrid options too</span></div></div>
+      <div class="it"><svg width="34" height="34" aria-hidden="true"><use href="#i-shape"/></svg><div class="t">Round and square<span>Shapes to suit the space</span></div></div>
+      <div class="it"><svg width="34" height="34" aria-hidden="true"><use href="#i-van"/></svg><div class="t">Delivered and installed<span>Priced to your site</span></div></div>
+      <div class="it"><svg width="34" height="34" aria-hidden="true"><use href="#i-steps"/></svg><div class="t">Classic Collection<span>1.5m, 1.8m, 1.9m and 2.2m</span></div></div>
+    </div>
+    <ul class="rules">
+      <li>Feature strip has no cards: hairline dividers between items, sage 1.3px line icons.</li>
+      <li>Prices always say + VAT and never include delivery and installation.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 06 DETAILS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">06</span><h2>Detail circles and the close up band</h2><p>Close up details cut to circles, then one dark macro band per piece.</p></div>
+    <div class="circ-row">
+      <div class="circ"><div class="o"><div><svg width="40" height="40" aria-hidden="true"><use href="#i-flame"/></svg></div></div><div class="c">The stove</div><p>A close up photo of the fitting, cut to a circle with a fine ring.</p></div>
+      <div class="circ"><div class="o"><div><svg width="40" height="40" aria-hidden="true"><use href="#i-steps"/></svg></div></div><div class="c">The steps</div><p>Sage caps caption, slate line underneath.</p></div>
+      <div class="circ"><div class="o"><div><svg width="40" height="40" aria-hidden="true"><use href="#i-shape"/></svg></div></div><div class="c">The shell</div><p>Three in a row, never more.</p></div>
+    </div>
+    <div class="band">
+      <div class="bg"></div><div class="veil"></div>
+      <div class="in"><div class="k">Close up</div><h3>Built to be <em class="acc">touched</em>.</h3><p>Full bleed macro of timber or steel under a graphite veil, white heading, one birch accent word.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 PHOTOS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">07</span><h2>Photo style</h2><p>Bright, clean and catalogue-like. Lots of light, neutral settings, the tub always whole.</p></div>
+    <div class="ph-grid">
+      <div class="ph-card"><svg width="34" height="34" aria-hidden="true"><use href="#i-sun"/></svg><h4>Soft daylight</h4><p>Bright, even light. White or pale grey surroundings, gravel, pale stone, white shrubs.</p></div>
+      <div class="ph-card"><svg width="34" height="34" aria-hidden="true"><use href="#i-frame"/></svg><h4>Product first</h4><p>The tub fills the frame, shown at its real shape, never cropped. Steps and cover visible.</p></div>
+      <div class="ph-card"><svg width="34" height="34" aria-hidden="true"><use href="#i-people"/></svg><h4>People optional</h4><p>If someone is in shot they are calm and natural. Hero shots can be the tub alone.</p></div>
+    </div>
+    <ul class="rules">
+      <li>No BSUK branding, mats or barrel saunas in a Vale photo.</li>
+      <li>Liam signs off every AI-touched image before it goes on the stand or the site.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 08 DO AND DON'T -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">08</span><h2>Do and don't</h2></div>
+    <div class="dd2">
+      <div class="dbox yes"><h4>&#10003; Do</h4><ul>
+        <li>Give every heading exactly one Cormorant italic word</li>
+        <li>Keep sage and birch to thin lines and line icons</li>
+        <li>Let white space carry the premium feel, Skargards style</li>
+        <li>Use one dark band at most, spaced well away from the footer</li>
+      </ul></div>
+      <div class="dbox no"><h4>&#10007; Don't</h4><ul>
+        <li>Fill large areas with sage or birch</li>
+        <li>Use bold headings. Weight here is regular, the italic word does the lifting</li>
+        <li>Round the card corners. 6px is the look</li>
+        <li>Mix in BSUK honey, forest green or Raleway</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 ON THE STAND -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">09</span><h2>On the stand</h2><p>How it lands at the NEC. Back wall for the 3 x 3 m hall stand LLT455 and one roller banner.</p></div>
+    <div class="stand-grid">
+      <div>
+        <div class="wall" role="img" aria-label="Stand back wall preview">
+          <div class="l">
+            <span class="mark" style="align-items:flex-start"><span class="w" style="margin-right:0">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#8A9E87" stroke-width="1.2"/></svg><span class="s" style="margin-right:0">HOT TUBS</span></span>
+            <div class="wh">Warm water, <em class="acc">quiet</em> garden.</div>
+            <div class="foot">Wood-fired &middot; electric &middot; hybrid</div>
+          </div>
+          <div class="r"><div class="ph-ph">Hero tub photo, whole and uncropped</div><span class="btn sage" style="padding:10px 20px;font-size:11px">Launching here</span></div>
+        </div>
+        <div class="wall-cap"><span class="btn sage" style="padding:10px 20px;font-size:11px">Launching here</span></div>
+        <p class="dims">Back wall, 3 m wide x 2.5 m high. White fabric print, graphite type, one photo panel.</p>
+      </div>
+      <div>
+        <div class="banner" role="img" aria-label="Roller banner preview">
+          <span class="mark"><span class="w">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#8A9E87" stroke-width="1.2"/></svg><span class="s">HOT TUBS</span></span>
+          <div class="bh">Four tubs, <em class="acc">one</em> feeling.</div>
+          <div class="ph-ph">Tub photo</div>
+          <div class="bf">Register interest<br>[Vale web address]</div>
+        </div>
+        <p class="dims">Roller banner, 850 x 2000 mm.</p>
+      </div>
+    </div>
+    <ul class="rules">
+      <li>Stand plan in the KRM pack shows the tub size as TBC until Tadas confirms. Wall artwork does not depend on it.</li>
+      <li>Photo panels stay empty here until Liam picks the hero shot.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="doc"><div class="wrap">Vale Hot Tubs brand board &middot; Classic edition &middot; v2 &middot; internal reference, not for print as is.</div></footer>
+
+</body>
+</html>
