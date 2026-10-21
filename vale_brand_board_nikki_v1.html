@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vale Brand Board, Nikki Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cormorant+Garamond:wght@400&family=Jost:wght@300;400;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Vale, Nikki edition tokens (lifted from nikki_version.html) */
+  --ground:#F3F3F1;
+  --white:#FFFFFF;
+  --char:#2D2D2D;
+  --ink:#1F1F1F;
+  --slate:#6B7280;
+  --mute:#9A9EA6;
+  --hair:rgba(45,45,45,0.09);
+  --lift:0 2px 6px rgba(30,30,30,0.04), 0 24px 60px rgba(30,30,30,0.08);
+  --lift-hi:0 4px 10px rgba(30,30,30,0.05), 0 34px 70px rgba(30,30,30,0.12);
+  --sans:'Jost', Arial, Helvetica, sans-serif;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --hand:'Caveat', 'Comic Sans MS', cursive;
+  /* board chrome */
+  --doc:'Poppins', Arial, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--white);color:var(--char);font-family:var(--doc);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+/* board chrome */
+.cover{background:var(--ground);padding:72px 0 64px;border-bottom:1px solid var(--hair);}
+.cover .row{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;}
+.doc-k{font-family:var(--doc);font-size:11px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--slate);}
+.cover h1{font-family:var(--doc);font-weight:600;font-size:40px;line-height:1.15;margin-top:14px;color:var(--char);}
+.cover p{color:var(--slate);max-width:560px;margin-top:12px;}
+.meta{font-size:13px;color:var(--slate);text-align:right;line-height:1.9;}
+.meta .v{font-weight:600;color:var(--char);}
+.sec{padding:72px 0;border-bottom:1px solid var(--hair);}
+.sec-h{display:flex;gap:18px;align-items:baseline;margin-bottom:30px;}
+.sec-h .n{font-family:var(--doc);font-weight:600;font-size:13px;color:var(--mute);letter-spacing:0.1em;}
+.sec-h h2{font-family:var(--doc);font-weight:600;font-size:24px;color:var(--char);}
+.sec-h p{color:var(--slate);font-size:14px;margin-left:auto;max-width:420px;text-align:right;}
+.rules{list-style:none;margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:10px 40px;}
+.rules li{font-size:14px;color:var(--slate);padding-left:18px;position:relative;}
+.rules li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;border-radius:50%;background:var(--char);}
+
+/* demo stage: everything inside uses Vale */
+.stage{background:var(--ground);border-radius:30px;padding:56px;font-family:var(--sans);}
+.stage.white{background:var(--white);box-shadow:var(--lift);}
+.stage.dark{background:var(--char);}
+
+/* wordmark */
+.mark{display:inline-flex;flex-direction:column;align-items:center;line-height:1;}
+.mark .w{font-family:var(--serif);font-size:34px;letter-spacing:0.42em;margin-right:-0.42em;color:var(--char);}
+.mark svg{margin:5px 0 4px;}
+.mark .s{font-family:var(--sans);font-size:9px;letter-spacing:0.62em;margin-right:-0.62em;color:var(--char);opacity:.7;}
+.mark.big .w{font-size:72px;}
+.mark.big svg{width:250px;height:16px;margin:10px 0 8px;}
+.mark.big .s{font-size:17px;}
+.mark.light .w,.mark.light .s{color:#fff;}
+.mark.light .s{opacity:.75;}
+.wm-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px;}
+.wm-grid .stage{display:flex;align-items:center;justify-content:center;min-height:230px;padding:36px;}
+.space{position:relative;padding:34px 46px;border:1px dashed rgba(45,45,45,0.28);}
+.space .tagx{position:absolute;top:-10px;left:12px;background:var(--ground);padding:0 8px;font-family:var(--doc);font-size:11px;color:var(--slate);letter-spacing:0.08em;}
+.cap{font-family:var(--doc);font-size:12px;color:var(--slate);margin-top:12px;}
+
+/* colour */
+.sw-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+.sw{border-radius:22px;overflow:hidden;background:#fff;box-shadow:var(--lift);}
+.sw .chip{height:120px;border-bottom:1px solid var(--hair);}
+.sw .info{padding:14px 16px 16px;}
+.sw .nm{font-weight:600;font-size:14px;}
+.sw .hx{font-size:12px;color:var(--slate);letter-spacing:0.04em;}
+.sw .use{font-size:12px;color:var(--slate);margin-top:6px;line-height:1.5;}
+.ratio{display:flex;height:46px;border-radius:14px;overflow:hidden;margin-top:28px;box-shadow:var(--lift);}
+.ratio div{display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:0.08em;}
+
+/* type */
+.k{font-family:var(--sans);font-size:12px;letter-spacing:0.34em;text-transform:uppercase;color:var(--slate);display:flex;align-items:center;gap:14px;}
+.k::before{content:"";width:28px;height:1px;background:var(--char);opacity:.5;}
+.thin{font-weight:300;}
+.heavy{font-weight:800;letter-spacing:-0.035em;}
+.vh1{font-family:var(--sans);font-size:78px;line-height:0.98;letter-spacing:-0.025em;color:var(--char);margin-top:20px;}
+.vh1 .thin{display:block;}
+.vh2{font-family:var(--sans);font-size:46px;line-height:1.04;letter-spacing:-0.025em;color:var(--char);}
+.vlede{font-family:var(--sans);font-size:19px;color:var(--slate);max-width:520px;line-height:1.7;margin-top:22px;}
+.hand{font-family:var(--hand);font-size:30px;color:var(--ink);line-height:1.2;}
+.scale{margin-top:30px;border-top:1px solid var(--hair);}
+.scale .r{display:grid;grid-template-columns:170px 1fr 230px;gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--hair);}
+.scale .r .l{font-family:var(--doc);font-size:12px;color:var(--slate);}
+.scale .r .s{font-family:var(--doc);font-size:12px;color:var(--mute);text-align:right;}
+.fam{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;}
+.fam .stage{padding:32px;}
+.fam .big{font-size:56px;line-height:1;color:var(--char);}
+
+/* buttons */
+.btn{display:inline-block;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;border-radius:40px;padding:17px 34px;border:1px solid var(--char);white-space:nowrap;}
+.btn.solid{background:var(--char);color:#fff;}
+.btn.ghost{background:#fff;color:var(--char);border-color:#fff;box-shadow:var(--lift);}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+/* cards */
+.card-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:24px;align-items:start;}
+.pcard{background:#fff;border-radius:22px;overflow:hidden;box-shadow:var(--lift);}
+.pcard .ph{background:var(--ground);height:210px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--hair);}
+.pcard .tag{padding:22px 22px 24px;font-family:var(--sans);}
+.pcard .lab{font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--slate);}
+.pcard h3{font-size:24px;font-weight:300;letter-spacing:-0.02em;margin-top:6px;color:var(--char);}
+.pcard h3 .heavy{font-weight:800;}
+.pcard .ln{font-size:14px;color:var(--slate);margin-top:4px;}
+.pcard .pr{margin-top:14px;padding-top:14px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;font-size:15px;}
+.pcard .pr span{font-size:11px;letter-spacing:0.12em;color:var(--slate);}
+.strip-it{background:#fff;border-radius:22px;box-shadow:var(--lift);padding:24px 22px;display:flex;gap:16px;align-items:center;font-family:var(--sans);}
+.strip-it .t{font-size:15px;font-weight:700;line-height:1.35;color:var(--char);}
+.strip-it .t span{display:block;font-weight:400;font-size:13px;color:var(--slate);}
+.panel-demo{background:#fff;border-radius:30px;box-shadow:var(--lift);padding:40px;font-family:var(--sans);}
+.stack{display:flex;flex-direction:column;gap:18px;}
+
+/* doodles */
+.dd-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;}
+.icons{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.icons .strip-it{padding:20px;}
+
+/* photo */
+.ph-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ph-card{background:#fff;border-radius:22px;box-shadow:var(--lift);padding:26px;}
+.ph-card h4{font-family:var(--doc);font-weight:600;font-size:15px;margin:14px 0 6px;}
+.ph-card p{font-size:13px;color:var(--slate);}
+
+/* do and don't */
+.dd2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.dbox{border-radius:22px;padding:30px;border:1px solid var(--hair);}
+.dbox h4{font-family:var(--doc);font-weight:600;font-size:15px;margin-bottom:14px;display:flex;gap:10px;align-items:center;}
+.dbox ul{list-style:none;}
+.dbox li{font-size:14px;color:var(--slate);padding:9px 0;border-top:1px solid var(--hair);}
+.dbox.yes{background:#fff;box-shadow:var(--lift);}
+.dbox.no{background:var(--ground);}
+
+/* stand */
+.stand-grid{display:grid;grid-template-columns:2.1fr 1fr;gap:26px;align-items:end;}
+.wall{background:var(--ground);aspect-ratio:3/2.5;border-radius:6px;box-shadow:var(--lift-hi);position:relative;overflow:hidden;font-family:var(--sans);display:flex;flex-direction:column;padding:6% 7%;}
+.wall .top{display:flex;justify-content:space-between;align-items:flex-start;}
+.wall .mid{flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:6%;align-items:center;}
+.wall .wh{font-size:clamp(26px,3.7vw,46px);line-height:0.98;letter-spacing:-0.025em;color:var(--char);}
+.wall .wh .thin{display:block;}
+.wall .foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);}
+.wall .note{font-family:var(--hand);font-size:clamp(18px,2vw,26px);color:var(--ink);text-transform:none;letter-spacing:0;}
+.banner{background:var(--ground);aspect-ratio:850/2000;border-radius:6px;box-shadow:var(--lift-hi);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:14% 10% 12%;text-align:center;font-family:var(--sans);}
+.banner .bh{font-size:clamp(20px,2.4vw,30px);line-height:1;letter-spacing:-0.025em;color:var(--char);}
+.banner .bh .thin{display:block;}
+.banner .bf{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--slate);line-height:1.8;}
+.dims{font-family:var(--doc);font-size:12px;color:var(--slate);margin-top:12px;}
+.floor{height:10px;background:linear-gradient(180deg,rgba(45,45,45,0.10),rgba(45,45,45,0));border-radius:0 0 30px 30px;margin:0 6%;}
+
+footer.doc{padding:40px 0 60px;font-size:12px;color:var(--mute);}
+
+@media (max-width:900px){
+  .wm-grid,.card-row,.dd-grid,.ph-grid,.dd2,.two,.fam,.stand-grid{grid-template-columns:1fr;}
+  .sw-grid{grid-template-columns:repeat(2,1fr);}
+  .rules{grid-template-columns:1fr;}
+  .sec-h{flex-wrap:wrap;}
+  .sec-h p{margin-left:0;text-align:left;}
+  .scale .r{grid-template-columns:1fr;gap:4px;}
+  .scale .r .s{text-align:left;}
+  .vh1{font-size:52px;}
+  .banner{max-width:280px;margin:0 auto;}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px;}
+  .stage{padding:28px;border-radius:22px;}
+  .cover h1{font-size:30px;}
+  .meta{text-align:left;}
+  .vh1{font-size:42px;}
+  .vh2{font-size:32px;}
+  .mark.big .w{font-size:48px;}
+  .mark.big svg{width:170px;}
+  .mark.big .s{font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <symbol id="tub" viewBox="0 0 340 240">
+      <g fill="none" stroke="#1F1F1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)">
+        <path d="M18 44 C 70 76, 130 80, 186 54 C 220 38, 250 30, 286 34"/>
+        <path d="M44 60 v7"/><circle cx="44" cy="72" r="5"/>
+        <path d="M78 71 v7"/><circle cx="78" cy="83" r="5"/>
+        <path d="M114 74 v7"/><circle cx="114" cy="86" r="5"/>
+        <path d="M150 68 v7"/><circle cx="150" cy="80" r="5"/>
+        <path d="M184 55 v7"/><circle cx="184" cy="67" r="5"/>
+        <path d="M216 42 v7"/><circle cx="216" cy="54" r="5"/>
+        <path d="M250 35 v7"/><circle cx="250" cy="47" r="5"/>
+        <path d="M278 34 L 278 206"/><path d="M290 34 L 290 206"/>
+        <path d="M270 34 C 278 26, 290 26, 298 34 Z"/>
+        <path d="M278 120 h12 M278 140 h12 M278 160 h12"/>
+        <path d="M266 188 C 270 182, 274 182, 278 186"/>
+        <path d="M128 118 c -8 -10, 6 -16, -2 -28"/>
+        <path d="M196 112 c -8 -10, 6 -16, -2 -26"/>
+        <ellipse cx="166" cy="140" rx="92" ry="17"/>
+        <path d="M86 146 c 40 12, 120 12, 160 0"/>
+        <path d="M112 140 q 6 -4 12 0 q 6 4 12 0"/>
+        <path d="M200 138 q 6 -4 12 0 q 6 4 12 0"/>
+        <circle cx="168" cy="118" r="10"/>
+        <circle cx="171" cy="104" r="5"/>
+        <path d="M150 140 C 154 128, 182 128, 186 140"/>
+        <path d="M186 138 C 194 134, 202 136, 206 142"/>
+        <path d="M74 140 L 76 206"/><path d="M258 140 L 256 206"/>
+        <path d="M76 206 C 120 222, 212 222, 256 206"/>
+        <path d="M96 160 v52 M118 163 v54 M140 165 v55 M162 165 v56 M184 165 v55 M206 164 v54 M228 162 v52"/>
+        <path d="M76 176 C 120 190, 212 190, 256 176"/>
+        <path d="M80 132 C 70 150, 70 178, 74 194 L 86 196 C 84 176, 86 156, 92 138"/>
+        <path d="M128 222 L 128 198 L 204 198 L 204 222"/>
+        <path d="M128 208 h76"/>
+        <path d="M14 226 C 110 222, 230 230, 326 224"/>
+        <path d="M34 226 l -3 -8 M38 226 l 2 -9 M304 225 l -3 -8 M309 225 l 2 -9"/>
+        <path d="M30 224 C 30 210, 58 210, 58 224"/><path d="M34 214 C 38 204, 50 204, 54 214"/>
+        <path d="M312 224 v-14 h8 v14"/><path d="M316 206 c -3 -4, 3 -6, 0 -10"/>
+      </g>
+    </symbol>
+    <symbol id="i-flame" viewBox="0 0 44 44"><g fill="none" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)"><path d="M22 6 C 28 14, 34 18, 33 27 C 32 35, 26 39, 21 39 C 14 39, 10 33, 11 27 C 12 22, 15 20, 17 16 C 18 20, 20 22, 23 22 C 21 16, 21 11, 22 6 Z"/><path d="M21 39 C 18 36, 18 31, 22 28 C 25 31, 26 36, 21 39"/></g></symbol>
+    <symbol id="i-shape" viewBox="0 0 44 44"><g fill="none" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)"><circle cx="14" cy="23" r="10"/><path d="M27 12 L 40 13 L 39 34 L 27 33 Z"/></g></symbol>
+    <symbol id="i-van" viewBox="0 0 44 44"><g fill="none" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)"><path d="M3 29 L 3 13 L 26 13 L 26 29"/><path d="M26 18 L 34 18 L 40 24 L 40 29 L 26 29"/><path d="M3 29 h4 M15 29 h18"/><circle cx="11" cy="31" r="3.5"/><circle cx="34" cy="31" r="3.5"/><path d="M30 18 v6 h10"/></g></symbol>
+    <symbol id="i-rule" viewBox="0 0 44 44"><g fill="none" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)"><path d="M4 28 L 40 16 L 42 22 L 6 34 Z"/><path d="M11 26 l 1.5 4 M17 24 l 1 3 M23 22 l 1.5 4 M29 20 l 1 3 M35 18 l 1.5 4"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 44 44"><g fill="none" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)"><path d="M6 32 C 14 32, 30 32, 38 32"/><path d="M12 32 C 12 22, 32 22, 32 32"/><path d="M22 14 v-6 M10 19 l -4 -4 M34 19 l 4 -4"/></g></symbol>
+    <symbol id="i-people" viewBox="0 0 44 44"><g fill="none" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)"><circle cx="15" cy="16" r="5"/><circle cx="29" cy="16" r="5"/><path d="M5 36 C 6 27, 24 27, 25 36"/><path d="M21 31 C 24 26, 38 26, 39 36"/></g></symbol>
+    <symbol id="i-frame" viewBox="0 0 44 44"><g fill="none" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)"><path d="M5 9 L 39 9 L 39 35 L 5 35 Z"/><path d="M9 31 L 18 21 L 25 28 L 30 23 L 36 31"/><circle cx="30" cy="16" r="3"/></g></symbol>
+    <path id="wave" d="M1 4 C 16 0, 24 0, 40 4 S 64 8, 80 4 S 104 0, 119 4"/>
+  </defs>
+</svg>
+
+<!-- COVER -->
+<header class="cover">
+  <div class="wrap row">
+    <div>
+      <div class="doc-k">Vale Hot Tubs &middot; Brand board</div>
+      <h1>Nikki edition</h1>
+      <p>Soft grey ground, white floating cards, a thin and heavy heading mix and hand-drawn doodles. Everything here is lifted from the live nikki_version page, so the stand, print and site all match it.</p>
+    </div>
+    <div class="meta">
+      <span class="v">v1</span> &middot; 21 Oct 2026<br>
+      Source page: vale-hot-tubs.github.io/nikki_version.html<br>
+      First use: NEC, hall stand LLT455, 4 to 5 Nov
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 WORDMARK -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">01</span><h2>Wordmark</h2><p>Liam's wordmark stays exactly as drawn. VALE in Cormorant Garamond, the wave line, HOT TUBS spaced wide underneath.</p></div>
+    <div class="wm-grid">
+      <div class="stage">
+        <div class="space"><span class="tagx">clear space = height of the V</span>
+          <span class="mark big"><span class="w">VALE</span><svg viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#2D2D2D" stroke-width="1.1"/></svg><span class="s">HOT TUBS</span></span>
+        </div>
+      </div>
+      <div class="stage white"><span class="mark"><span class="w">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#2D2D2D" stroke-width="1.1"/></svg><span class="s">HOT TUBS</span></span></div>
+      <div class="stage dark"><span class="mark light"><span class="w">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#FFFFFF" stroke-width="1.1"/></svg><span class="s">HOT TUBS</span></span></div>
+    </div>
+    <ul class="rules">
+      <li>Charcoal on the grey ground or white. White only on charcoal or a dark photo.</li>
+      <li>Minimum size: the wave line 120px wide on screen, 40mm in print.</li>
+      <li>Never stretch, outline, shadow or recolour it. No gold, no green.</li>
+      <li>The wordmark is the only place Cormorant Garamond appears.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 02 COLOUR -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">02</span><h2>Colour</h2><p>No accent colour. The contrast between thin and heavy type, and between grey and white, does the work.</p></div>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:#F3F3F1"></div><div class="info"><div class="nm">Ground</div><div class="hx">#F3F3F1</div><div class="use">Page background, stand walls, banners</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="info"><div class="nm">White</div><div class="hx">#FFFFFF</div><div class="use">Floating panels and cards</div></div></div>
+      <div class="sw"><div class="chip" style="background:#2D2D2D"></div><div class="info"><div class="nm">Charcoal</div><div class="hx">#2D2D2D</div><div class="use">Headings, wordmark, solid buttons</div></div></div>
+      <div class="sw"><div class="chip" style="background:#1F1F1F"></div><div class="info"><div class="nm">Ink</div><div class="hx">#1F1F1F</div><div class="use">Doodle lines and handwritten notes</div></div></div>
+      <div class="sw"><div class="chip" style="background:#6B7280"></div><div class="info"><div class="nm">Slate</div><div class="hx">#6B7280</div><div class="use">Body copy, kickers, labels</div></div></div>
+      <div class="sw"><div class="chip" style="background:#9A9EA6"></div><div class="info"><div class="nm">Mute</div><div class="hx">#9A9EA6</div><div class="use">Fine print and dividers only</div></div></div>
+    </div>
+    <div class="ratio" aria-label="Colour balance">
+      <div style="flex:55;background:#F3F3F1;color:#6B7280">GROUND 55%</div>
+      <div style="flex:28;background:#FFFFFF;color:#6B7280">WHITE 28%</div>
+      <div style="flex:10;background:#2D2D2D;color:#fff">10%</div>
+      <div style="flex:7;background:#6B7280;color:#fff">7%</div>
+    </div>
+    <p class="cap">Rough balance across any piece. Charcoal stays under a tenth, so it reads as confident rather than dark.</p>
+  </div>
+</section>
+
+<!-- 03 TYPE -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">03</span><h2>Type</h2><p>One family, Jost, at two extremes. A thin line leads into a heavy line in the same heading.</p></div>
+    <div class="stage">
+      <div class="k">Meet Vale</div>
+      <div class="vh1"><span class="thin">Warm water,</span> <span class="heavy">quiet evenings.</span></div>
+      <p class="vlede">A Vale hot tub is for the slow end of the day. Lid off, lights on, nowhere to be.</p>
+      <div class="scale">
+        <div class="r"><span class="l">Hero heading</span><span class="vh2" style="font-size:40px"><span class="thin">Made for</span> <span class="heavy">doing nothing.</span></span><span class="s">Jost 300 + 800 &middot; 52 to 80px &middot; tracking -0.025em</span></div>
+        <div class="r"><span class="l">Section heading</span><span class="vh2" style="font-size:30px"><span class="thin">Four tubs,</span> <span class="heavy">one feeling.</span></span><span class="s">Jost 300 + 800 &middot; 48px</span></div>
+        <div class="r"><span class="l">Card title</span><span style="font-family:var(--sans);font-size:22px;font-weight:300;letter-spacing:-0.02em">The <span class="heavy">Snowdonia</span></span><span class="s">Jost 300 + 800 &middot; 22 to 24px</span></div>
+        <div class="r"><span class="l">Kicker</span><span class="k">The range</span><span class="s">Jost 400 caps &middot; 12px &middot; 0.34em</span></div>
+        <div class="r"><span class="l">Body</span><span style="font-family:var(--sans);font-size:17px;color:var(--slate)">Each one comes in wood-fired or electric, with the finish, cover and steps chosen to suit your garden.</span><span class="s">Jost 400 &middot; 17px &middot; line height 1.7</span></div>
+        <div class="r"><span class="l">Handwritten note</span><span class="hand">lid off, lights on</span><span class="s">Caveat 400 &middot; next to doodles only</span></div>
+      </div>
+    </div>
+    <div class="fam">
+      <div class="stage white"><div class="doc-k">Headings and body</div><div class="big" style="font-family:var(--sans)"><span class="thin">Aa</span> <span class="heavy">Aa</span></div><p class="cap">Jost 300 thin, 400 body, 700 labels, 800 heavy</p></div>
+      <div class="stage white"><div class="doc-k">Wordmark only</div><div class="big" style="font-family:var(--serif)">Aa</div><p class="cap">Cormorant Garamond 400</p></div>
+      <div class="stage white"><div class="doc-k">Doodle notes</div><div class="big" style="font-family:var(--hand)">Aa</div><p class="cap">Caveat 400, one short phrase at a time</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 BUTTONS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">04</span><h2>Buttons</h2><p>Two buttons only. Rounded pills, spaced caps, never bold.</p></div>
+    <div class="two">
+      <div class="stage"><div class="btn-row"><span class="btn solid">Explore the range</span><span class="btn ghost">Register interest</span></div><p class="cap">On the grey ground: charcoal solid for the main action, white floating pill for the second.</p></div>
+      <div class="stage white"><div class="btn-row"><span class="btn solid">Register interest</span><span class="btn" style="background:#fff;color:var(--char)">See one</span></div><p class="cap">On a white panel the second button drops its shadow and takes a thin charcoal line instead.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 CARDS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">05</span><h2>Cards and panels</h2><p>White on grey, held up by a soft two-layer shadow. Generous corners, no borders.</p></div>
+    <div class="stage">
+      <div class="card-row">
+        <div class="pcard">
+          <div class="ph"><svg width="180" height="127" aria-hidden="true"><use href="#tub"/></svg></div>
+          <div class="tag"><div class="lab">Wood-fired</div><h3>The <span class="heavy">Snowdonia</span></h3><div class="ln">Warm timber, brushed steel and a built-in stove.</div><div class="pr">From &pound;X,XXX <span>+ VAT</span></div></div>
+        </div>
+        <div class="stack">
+          <div class="strip-it"><svg width="44" height="44" aria-hidden="true"><use href="#i-flame"/></svg><div class="t">Wood-fired or electric<span>Hybrid options too</span></div></div>
+          <div class="strip-it"><svg width="44" height="44" aria-hidden="true"><use href="#i-shape"/></svg><div class="t">Round and square<span>Shapes to suit the space</span></div></div>
+          <p class="cap">Feature tiles: 22px corners, doodle icon left, bold line over a slate line.</p>
+        </div>
+        <div class="panel-demo">
+          <div class="k">Panel</div>
+          <div class="vh2" style="font-size:30px;margin-top:12px"><span class="thin">Big rounded</span> <span class="heavy">white panels.</span></div>
+          <p style="font-size:14px;color:var(--slate);margin-top:12px">30px corners. Sections sit inside one of these on the grey ground, rather than running edge to edge.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="rules">
+      <li>Panels 30px corners, cards and tiles 22px, photos inside cards run flush to the top edge.</li>
+      <li>Shadow is always the soft lift. On hover the card rises 6px and the shadow deepens.</li>
+      <li>Prices always say + VAT and never include delivery and installation.</li>
+      <li>No borders on cards. Hairlines only as dividers inside a card.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 06 DOODLES -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">06</span><h2>Doodles and icons</h2><p>This is the personality. One ink pen line with a slight wobble, round ends, no fill.</p></div>
+    <div class="dd-grid">
+      <div class="stage" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <svg viewBox="0 0 340 240" width="100%" style="max-width:420px" role="img" aria-label="Hand drawn hot tub under string lights"><use href="#tub"/></svg>
+        <span class="hand" style="margin-top:10px">nowhere to be</span>
+      </div>
+      <div class="icons">
+        <div class="strip-it"><svg width="44" height="44" aria-hidden="true"><use href="#i-flame"/></svg><div class="t">Heating</div></div>
+        <div class="strip-it"><svg width="44" height="44" aria-hidden="true"><use href="#i-shape"/></svg><div class="t">Shapes</div></div>
+        <div class="strip-it"><svg width="44" height="44" aria-hidden="true"><use href="#i-van"/></svg><div class="t">Delivery</div></div>
+        <div class="strip-it"><svg width="44" height="44" aria-hidden="true"><use href="#i-rule"/></svg><div class="t">Sizes</div></div>
+      </div>
+    </div>
+    <ul class="rules">
+      <li>Ink #1F1F1F, 2px on illustrations, 1.8px on 44px icons, with the shared ink filter for the wobble.</li>
+      <li>One illustration per section at most. They sit beside copy, never behind it.</li>
+      <li>A handwritten Caveat note can sit next to a doodle. Three or four words.</li>
+      <li>On photos the doodle turns white, like the scroll down arrow on the hero.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 07 PHOTOS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">07</span><h2>Photo style</h2><p>Calm, warm, lived in. The tub is the hero and it is always shown whole.</p></div>
+    <div class="ph-grid">
+      <div class="ph-card"><svg width="44" height="44" aria-hidden="true"><use href="#i-sun"/></svg><h4>Golden hour or dusk</h4><p>Warm evening light, steam, string lights or a lit stove. Avoid flat midday shots.</p></div>
+      <div class="ph-card"><svg width="44" height="44" aria-hidden="true"><use href="#i-people"/></svg><h4>Relaxed, real people</h4><p>Someone soaking, a mug on the rim, a towel over the edge. Never posed or showy.</p></div>
+      <div class="ph-card"><svg width="44" height="44" aria-hidden="true"><use href="#i-frame"/></svg><h4>The whole tub, uncropped</h4><p>Shown at its real shape on its real ground: deck, gravel, garden. Light or neutral surroundings.</p></div>
+    </div>
+    <ul class="rules">
+      <li>No BSUK branding, mats or barrel saunas in a Vale photo.</li>
+      <li>Liam signs off every AI-touched image before it goes on the stand or the site.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 08 DO AND DON'T -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">08</span><h2>Do and don't</h2></div>
+    <div class="dd2">
+      <div class="dbox yes"><h4>&#10003; Do</h4><ul>
+        <li>Lead every heading with a thin phrase and land it on a heavy one</li>
+        <li>Leave lots of grey space around white cards</li>
+        <li>Keep copy short and slow: lid off, lights on, nowhere to be</li>
+        <li>Use one doodle to add warmth where a page feels cold</li>
+      </ul></div>
+      <div class="dbox no"><h4>&#10007; Don't</h4><ul>
+        <li>Add gold, navy, sage or wood tones. This edition has no accent colour</li>
+        <li>Use Cormorant anywhere but the wordmark</li>
+        <li>Put dark bands back to back, or more than one dark band per piece</li>
+        <li>Mix in BSUK honey, forest green or Raleway</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 ON THE STAND -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">09</span><h2>On the stand</h2><p>How it lands at the NEC. Back wall for the 3 x 3 m hall stand LLT455 and one roller banner.</p></div>
+    <div class="stand-grid">
+      <div>
+        <div class="wall" role="img" aria-label="Stand back wall preview">
+          <div class="top">
+            <span class="mark"><span class="w">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#2D2D2D" stroke-width="1.1"/></svg><span class="s">HOT TUBS</span></span>
+            <span class="btn solid" style="padding:10px 20px;font-size:11px">Launching here</span>
+          </div>
+          <div class="mid">
+            <div class="wh"><span class="thin">Warm water,</span> <span class="heavy">quiet evenings.</span></div>
+            <div><svg viewBox="0 0 340 240" width="100%" aria-hidden="true"><use href="#tub"/></svg></div>
+          </div>
+          <div class="foot"><span>Wood-fired &middot; electric &middot; hybrid</span><span class="note">come and sit with us</span></div>
+        </div>
+        <div class="floor"></div>
+        <p class="dims">Back wall, 3 m wide x 2.5 m high. Ground #F3F3F1 fabric print, charcoal type.</p>
+      </div>
+      <div>
+        <div class="banner" role="img" aria-label="Roller banner preview">
+          <span class="mark"><span class="w">VALE</span><svg width="120" height="8" viewBox="0 0 120 8" aria-hidden="true"><use href="#wave" fill="none" stroke="#2D2D2D" stroke-width="1.1"/></svg><span class="s">HOT TUBS</span></span>
+          <div class="bh"><span class="thin">Made for</span> <span class="heavy">doing nothing.</span></div>
+          <svg viewBox="0 0 340 240" width="100%" aria-hidden="true"><use href="#tub"/></svg>
+          <div class="bf">Register interest<br>[Vale web address]</div>
+        </div>
+        <p class="dims">Roller banner, 850 x 2000 mm.</p>
+      </div>
+    </div>
+    <ul class="rules">
+      <li>Stand plan in the KRM pack shows the tub size as TBC until Tadas confirms. Wall artwork does not depend on it.</li>
+      <li>Web address on the banner is a placeholder until the Vale domain is chosen.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="doc"><div class="wrap">Vale Hot Tubs brand board &middot; Nikki edition &middot; v1 &middot; internal reference, not for print as is.</div></footer>
+
+</body>
+</html>
